@@ -1,0 +1,3 @@
+npm i express mongoose cors dotenv morgan esm jsonwebtoken express-jwt bcrypt stripe nodemon
+npm i express-validator
+npm i bcryptjs
