@@ -2,7 +2,9 @@ const{ response, request, json } = require('express');
 const express = require('express'); 
 const User = require('../models/user.model');
 const {hashPassword}     = require('../helpers/auth');
-const { comparePassword} = require('../helpers/auth')
+const { comparePassword} = require('../helpers/auth');
+const jwt = require('jsonwebtoken')
+
 
 const createUser = async(req = request, res = response ) =>{
     try{
@@ -44,10 +46,15 @@ const createUser = async(req = request, res = response ) =>{
                 password: hashedPassword
             }).save();
 
+            const token = jwt.sign({_id: user._id},process.env.JWT_SECRET,{
+                expiresIn: "7d",
+            });
+
             const {password, ...shareableUser} = user._doc;
             res.json({
                 success: true,
-                user: shareableUser
+                user: shareableUser,
+                token
             })     
         }catch(err){
             console.log(err);

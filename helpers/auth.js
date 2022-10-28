@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const strype = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const hashPassword = (password) => {
   return new Promise((resolve, reject) => {

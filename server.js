@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const homeRoute = '/api/';
 const registerRoute = '/api/register';
 const loginRoute = '/api/login/';
+const pricesRoute = '/api/prices';
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(cors());
 app.use(homeRoute, require('./routes/home.route'));
 app.use(registerRoute, require('./routes/register.route'));
 app.use(loginRoute, require('./routes/login.route'));
+app.use(pricesRoute,require('./routes/subs.route'));
 
 
 
